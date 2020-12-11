@@ -67,6 +67,7 @@ namespace FirClient.Manager
             }
             Directory.CreateDirectory(dataPath);
 
+            //拷贝文件到数据目录
             yield return StartCoroutine(ExtractFile("files.txt"));
             yield return StartCoroutine(ExtractFile("version.txt"));
 

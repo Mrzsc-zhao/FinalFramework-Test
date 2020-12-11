@@ -18,6 +18,11 @@ namespace FirClient.Manager
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// 比对本地版本号和远端版本号，看资源是否需要更新
+        /// </summary>
+        /// <param name="updateOK">资源更新完的回调</param>
+        /// <returns></returns>
         public IEnumerator OnResUpdate(Action updateOK)
         {
             if (!AppConst.UpdateMode)
