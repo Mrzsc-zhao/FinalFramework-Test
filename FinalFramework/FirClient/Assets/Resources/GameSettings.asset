@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24ebf414c24c3414182f07e675b2ae44, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  debugMode: 1
+  debugMode: 0
   logMode: 1
   updateMode: 0
   luaByteMode: 0
+  showFps: 0
+  GameFrameRate: 30
   aStarDebugMode: 0
   uiAtlasPath: Assets/res/Atlas/UI
   uiTexturePath: Assets/Textures/UI
   texturePackerPath: D:\TexturePacker\bin
-  GameFrameRate: 30
   selectedAtlasIndex: 1
   atlasSettings:
   - assetPath: res/Atlas/UI/Shared

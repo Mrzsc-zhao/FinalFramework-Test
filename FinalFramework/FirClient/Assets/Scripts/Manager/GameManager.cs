@@ -35,7 +35,7 @@ namespace FirClient.Manager
                 OnResInitOK();
                 return;
             }
-            //TODO 这里这个判断，为什么数据目录里有东西反而需要释放资源到数据目录，不应该是数据目录是空的时候才需要释放么，有数据的话,判断版本号是否需要更新本地资源
+            // 第一次肯定没有数据目录 此处判断返回的结果是true  所以走的上边的逻辑
             if (extractMgr.IsResNeedExtract()) 
             {
                 //启动释放协成 

@@ -63,6 +63,7 @@ namespace FirClient.Manager
                 yield break;
             }
 
+            // TODO 这儿为什么不直接比对本地和远端的补丁版本号，如果相等直接跳过下边的这些判断
             //获取补丁列表文件内容
             var patchsFile = "patchs_" + remoteVerInfo.mainVersion + "_" + remoteVerInfo.primaryVersion + ".txt";
             string patchsUrl = AppConst.PatchUrl + patchsFile + "?v=" + Util.RandomTime();
