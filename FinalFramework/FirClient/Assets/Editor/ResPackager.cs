@@ -51,13 +51,16 @@ public class ResPackager : BaseEditor
             Selection.activeObject = Util.LoadGameSettings();
             return;
         }
-        BuildAssetBundles();
+        BuildAssetBundles();        //构建AB
         BuildScriptWithDatas();     //构建脚本+配置
         PatchPackager.UpdateOrCreateIndexFile();
 
         AssetDatabase.Refresh();
     }
 
+    /// <summary>
+    /// 打包AssetBundles资源
+    /// </summary>
     [MenuItem("GameAsset/Build AssetBundle", false, 103)]
     public static void BuildAssetBundles()
     {
@@ -120,6 +123,9 @@ public class ResPackager : BaseEditor
         Debug.Log("<color=gray>Build AssetBundle Complete!!!</color>");
     }
 
+    /// <summary>
+    /// 打印输出打包的所有AB中对应的资源名字
+    /// </summary>
     static void PrintAssetBundleList()
     {
         foreach(var map in maps)
@@ -214,6 +220,7 @@ public class ResPackager : BaseEditor
         {
             int n = 0;
             string luaDataPath = luaPaths[i].ToLower();
+            //获取所有的lua文件
             var files = Directory.GetFiles(luaDataPath, "*.*", SearchOption.AllDirectories);
             foreach (string f in files)
             {
@@ -294,23 +301,28 @@ public class ResPackager : BaseEditor
 
     static void PackSingle(string dirName, string fileTypes)
     {
+        //数据目录里面对应的资源目录
         var path = AppDataPath + "/" + dirName;
         if (!Directory.Exists(path))
         {
             Debug.LogError("PackSingle " + dirName + " not found!~");
             return;
         }
+        //遍历该资源目录下的所有对应类型的资源，返回的是资源对应的绝对路径
         var files = Directory.GetFiles(path, fileTypes, SearchOption.AllDirectories);
 
         List<string> resFiles = new List<string>();
         var build = new AssetBundleBuild();
+        //设置bundle的名字
         build.assetBundleName = Path.GetFileNameWithoutExtension(dirName) + AppConst.ExtName;
         foreach (var f in files)
         {
+            //跳过meta文件
             if (f.EndsWith(".meta"))
             {
                 continue;
             }
+            //将每个资源的绝对路径换成对应的相对路径
             var file = f.Replace('\\', '/').Replace(AppDataPath, "Assets");
             resFiles.Add(file);
         }
@@ -387,6 +399,9 @@ public class ResPackager : BaseEditor
         CZip.ZipFile(zipPath, srcPath, zipExtNames);
     }
 
+    /// <summary>
+    /// 其实这里就是在构建数据、配置之前，需要先生成对应的Version文件，然后这里会把数据目录中生成的Version文件拷贝到streamAssetsPath目录下
+    /// </summary>
     static void BuildVersion()
     {
         string srcFile = AppDataPath + "/version.txt";
