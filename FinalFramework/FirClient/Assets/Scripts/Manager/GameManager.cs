@@ -39,8 +39,10 @@ namespace FirClient.Manager
             if (extractMgr.IsResNeedExtract()) 
             {
                 //启动释放协成 
+                //外层的协程是先提取包内的资源
                 StartCoroutine(extractMgr.OnResExtract(delegate
                 {
+                    //内层的协程是对比版本号，看资源是否有更新
                     StartCoroutine(updateMgr.OnResUpdate(OnResInitOK));
                 }));    
             }

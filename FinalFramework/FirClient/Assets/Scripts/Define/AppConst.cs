@@ -25,7 +25,7 @@ public class AppConst
     public const string ABDir = "Assets/StreamingAssets/res";
     public const string ResIndexFile = "res";
     public const string GameSettingName = "GameSettings";       //游戏设置
-    public const string ResUrl = "http://127.0.0.1/versionFiles/";
+    public const string ResUrl = "http://127.0.0.1:8081/versionFiles/";  //版本资源 服务器地址
     public const string PatchUrl = ResUrl +"patchs/";           //测试更新地址
 
     public const string SocketAddress = "127.0.0.1";            //Socket服务器地址

@@ -27,6 +27,9 @@ public class PatchPackager : BaseEditor
     static string patchPath = AppDataPath + "/Patchs/";
     static VersionInfo localVerInfo = null;
 
+    /// <summary>
+    /// 构建生成游戏Patch文件
+    /// </summary>
     [MenuItem("GameAsset/Build Game Patch")]
     public static void BuildPatch() 
     {
@@ -85,6 +88,10 @@ public class PatchPackager : BaseEditor
         Debug.Log("CreatePatchIndexFile OK!");
     }
 
+    /// <summary>
+    /// 查找需要更新的文件
+    /// </summary>
+    /// <returns></returns>
     static List<string> FindNeedUpdateFiles() 
     {
         var oldPatchList = GetOldPatchList();
@@ -92,7 +99,9 @@ public class PatchPackager : BaseEditor
         foreach (var path in AppConst.AssetPaths)
         {
             string fullPath = AppDataPath + path;
+            //获取包内所有资源
             string[] files = Directory.GetFiles(fullPath, "*.*", SearchOption.AllDirectories);
+            //遍历包内所有资源，计算其md5
             foreach (var file in files)
             {
                 if (file.EndsWith(".meta")) continue;
@@ -103,6 +112,8 @@ public class PatchPackager : BaseEditor
                                      .ToLower();
 
                 PatchInfo patch = null;
+                //从旧的Patch文件中尝试获取该文件，如果取到该文件，就比较他们的md5，
+                //看看md5是否相同，如果不相同，就添加当前文件到更新列表，如果找不到该文件，就直接添加到更新列表
                 if (oldPatchList.TryGetValue(newPath, out patch))
                 {
                     if (patch.md5 != md5) { //md5值不同添加更新列表
@@ -143,7 +154,7 @@ public class PatchPackager : BaseEditor
     }
 
     /// <summary>
-    /// 开始打补丁
+    /// 开始打补丁(生成patch文件)
     /// </summary>
     /// <param name="needUpdateFiles"></param>
     static void BuildPatchInternal(List<string> needUpdateFiles) 
