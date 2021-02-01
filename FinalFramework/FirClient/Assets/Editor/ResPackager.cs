@@ -204,6 +204,8 @@ public class ResPackager : BaseEditor
     /// </summary>
     static void PackLuaFiles()
     {
+        //先在StreamingAssets文件夹下创建一个临时lua文件夹，将所有的lua脚本全部复制进这个临时文件夹
+        //然后将所有的lua脚本全部压缩进一个压缩包中，再删除这个临时文件夹
         string resPath = AppDataPath + "/StreamingAssets/";
         string luaPath = resPath + "lua/";
 
