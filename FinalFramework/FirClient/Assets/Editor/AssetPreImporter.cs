@@ -3,6 +3,9 @@ using UnityEditor;
 using System.IO;
 using System.Linq;
 
+/// <summary>
+/// 导入资源的时候可以自动做一些处理
+/// </summary>
 public class AssetPreImporter : AssetPostprocessor
 {
     void OnPreprocessTexture()
