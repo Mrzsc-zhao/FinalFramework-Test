@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugMode: 0
   logMode: 1
-  updateMode: 0
+  updateMode: 1
   luaByteMode: 0
   showFps: 0
   GameFrameRate: 30

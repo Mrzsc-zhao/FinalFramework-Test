@@ -1,3 +1,4 @@
+---@class UIManager
 local UIManager = class("UIManager")
 
 function UIManager:Initialize()

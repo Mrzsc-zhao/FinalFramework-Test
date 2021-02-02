@@ -13,6 +13,7 @@ local uiItemTipsCtrl = require "UIController/UIItemTipsCtrl"
 local uiBagCtrl = require "UIController/UIBagCtrl"
 local uiChooseActorCtrl = require "UIController/UIChooseActorCtrl"
 
+---@class CtrlManager 
 local CtrlManager = class("CtrlManager")
 
 function CtrlManager:Initialize()

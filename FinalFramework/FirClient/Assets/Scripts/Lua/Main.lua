@@ -4,8 +4,10 @@ require "Common/LuaUtil"
 local ManagerCenter = require "Common/ManagerCenter"
 
 local levelMgr = nil
+---@field ctrlMgr 
 local ctrlMgr = nil
 local adapterMgr = nil
+---@field uiMgr UIManager
 local uiMgr = nil
 
 function Main.Initialize(initOK)

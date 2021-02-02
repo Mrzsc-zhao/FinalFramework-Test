@@ -211,6 +211,7 @@ namespace FirClient.Manager {
 
         IEnumerator OnLoadAssetBundle(string abName, Type type)
         {
+            //获取素材的全路径 StreamingAssets/res/res
             string url = GetAssetFullPath(abName);
             GLogger.Gray(url);
             if (!m_AssetBundleLoadingList.Contains(url))
